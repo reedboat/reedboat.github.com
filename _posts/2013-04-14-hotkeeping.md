@@ -5,7 +5,6 @@ description: "关注最重要的新闻，不让社会热点轻易溜走"
 category:产品设计
 tags: [产品, 热点]
 ---
-{% include JB/setup %}
 
 # 不忘新闻设计稿
 ## 想法
