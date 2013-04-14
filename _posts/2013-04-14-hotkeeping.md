@@ -1,41 +1,59 @@
 ---
 layout: page
-title: 个人管理工具
-category: work
-tags: [效率, 收藏]
+title: '热点休走'方案设计
+description: 关注最重要的新闻，不让社会热点轻易溜走
+category: 产品设计
+tags: [产品, 热点]
 ---
 
-选择工具的原则
-----
-选择的工具要好用，使用简单，会被长期维护。最好能跨平台，包括PC端和移动侧，同时支持mac和win. 工具最好能够云同步。 如果不行的话，可以考虑配合
-网盘和git版本管理工具使用。最好是免费的，长期使用的，价格合适的可以考虑购买
+# 不忘新闻设计稿
+## 想法
+世界上每天都会发生很多的事件，在网络时代，一些事件被广大网民所关注，形成社会热点，产生巨大的能量。
+但是网民的精力有限，关注点很容易被转移，每当一个新的热点产生，旧事件很快就被大家遗忘。
+很多的事情并未得到解决就这样不了了之，这样不利于问题的解决。
+本产品想通过网民的行为，延长部分社会热点的持久性。
 
-工具链
-----
-* evernote 笔记管理，也用来收藏网页. 编辑器不太好用，目前配合markdown
-* vim 我的编辑器
-* github 用来管理配置文件、代码
-* 网盘： 新浪V盘，金山快盘，QQ网盘. 希望以新浪V盘为主。可以用来做阅读和文档管理
-* 
-* promodoro? pomotime? 番茄工作法。 目前还没有特别好用的。
-* xmind 思维导图 用的不太多，但希望能多用。
-* todo.im 任务管理工具. 能跨平台，但是稳定性不好，各平台的支持度也不同
-* 
-* everything win下的桌面搜索工具
-* launchy 快速启动工具. 
-* putty
-* vmware 虚拟机. 虚拟系统文件能同步就好了。 
-* 有道词典 + 有道单词本 c-a-m
+##设计思路
+1. 通过数据分析或者抓取，获得每日的焦点事件, 新闻按照事件组织。专题? 对于孤立的事件，可以忽略之
+1. 网友可以通过微博、QQ、人人等社会化网络账号登陆
+1. 网友可以通过点击顶， 来将事件顶上去. 每天对同一事件只能顶一次
+1. 对于新闻进行打分排序，时间分和关注分。
+## 数据库设计
+### Topic
+* id
+* title
+* summary
+* keywords
+* images:[{pic1, size, label, title},...]
+  
+### News
+* id
+* title
+* summary
+* content
+* images
+* source
 
-命令行工具
-------
-* screen
-* vim 
-* git git-svn git-flow
-* zsh
-* expect
-* tcpdump strace
-* find xargs pstree
-* awk cut sed
-* tar diff 
+### topic_news
+* id
+* topic_id
+* news_id
 
+### user
+* id
+* username
+* screenname
+
+### user_bind
+* id
+* site
+* site_uid
+* uid
+* token
+* expire
+
+### user_vote
+* id
+* user_id
+* topic_id
+* time
